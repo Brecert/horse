@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>hooooooooooooooooooooooooooooooooooooooooooooooooooooooooorse</title>
+  </head>
+  <body style="display: flex; justify-content: center" onscroll="addLegs()">
+    <pre id="horse">
+       ,
+_,,)\.~,,._
+(()`  ``)\))),,_
+ |     \ ''((\)))),,_          ____
+ |6`   |   ''((\())) "-.____.-"    `-.-,
+ |    .'\    ''))))'                  \)))
+ |   |   `.     ''                     ((((
+ \, _)     \/                          |))))
+  `'        |                          (((((
+            \                  |       ))))))
+             `|    |           ,\     /((((((
+              |   / `-.______.&lt;  \   |  )))))
+              |   |  /         `. \  \  ((((
+              |  / \ |           `.\  | (((
+              \  | | |             )| |  ))
+               | | | |             || |  '</pre
+    >
+    <script>
+      const legs = "\n               | | | |             || |";
+
+      const scrollPercent = (elm, p) =>
+        ((elm.scrollTop || p.scrollTop) / (p.scrollHeight - p.clientHeight)) *
+        100;
+
+      let legCount = 0;
+
+      while (0 <= window.innerHeight - document.body.scrollHeight) {
+        legCount += 1;
+        horse.insertAdjacentHTML("beforeend", legs);
+      }
+
+      const addLegs = () => {
+        while (scrollPercent(document.body, document.documentElement) > 90) {
+          legCount += 1;
+          horse.insertAdjacentHTML("beforeend", legs);
+        }
+      };
+    </script>
+  </body>
+</html>
