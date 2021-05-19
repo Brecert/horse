@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>hooooooooooooooooooooooooooooooooooooooooooooooooooooooooorse</title>
   </head>
-  <body style="display: flex; justify-content: center" onscroll="addLegs()">
+  <body style="display: flex; justify-content: center;">
     <pre id="horse">
        ,
 _,,)\.~,,._
@@ -33,7 +33,7 @@ _,,)\.~,,._
 
       let legCount = 0;
 
-      while (0 <= window.innerHeight - document.body.scrollHeight) {
+      while (-1000 <= window.innerHeight - document.body.scrollHeight) {
         legCount += 1;
         horse.insertAdjacentHTML("beforeend", legs);
       }
@@ -44,6 +44,9 @@ _,,)\.~,,._
           horse.insertAdjacentHTML("beforeend", legs);
         }
       };
+
+      addLegs()
+      window.onscroll = addLegs;
     </script>
   </body>
 </html>
