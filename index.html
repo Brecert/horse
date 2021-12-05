@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="data:" rel="icon" />
     <title>hooooooooooooooooooooooooooooooooooooooooooooooooooooooooorse</title>
   </head>
   <body style="display: flex; justify-content: center;">
@@ -25,7 +26,7 @@ _,,)\.~,,._
                | | | |             || |  '</pre
     >
     <script>
-      const legs = "\n               | | | |             || |";
+      const legs = "\n               | | | |             || |".repeat(10);
 
       const scrollPercent = (elm, p) =>
         ((elm.scrollTop || p.scrollTop) / (p.scrollHeight - p.clientHeight)) *
@@ -33,12 +34,14 @@ _,,)\.~,,._
 
       let legCount = 0;
 
-      while (-1000 <= window.innerHeight - document.body.scrollHeight) {
+      while (-100 <= window.innerHeight - document.body.scrollHeight) {
         legCount += 1;
         horse.insertAdjacentHTML("beforeend", legs);
       }
 
       const addLegs = () => {
+        // warning: as more legs are added, this will add more legs, set to a fixed rate in the future?
+        // maybe margins could be used to make it look more filled than it actually is, then only add what's needed
         while (scrollPercent(document.body, document.documentElement) > 90) {
           legCount += 1;
           horse.insertAdjacentHTML("beforeend", legs);
