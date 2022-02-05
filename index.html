@@ -5,8 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="data:" rel="icon" />
     <title>hooooooooooooooooooooooooooooooooooooooooooooooooooooooooorse</title>
+    <style>
+      div {
+        contain: strict;
+        height: 12em;
+      }
+    </style>
   </head>
-  <body style="display: flex; justify-content: center;">
+  <body style="display: flex; justify-content: center; line-height: 1.2">
     <pre id="horse">
        ,
 _,,)\.~,,._
@@ -26,7 +32,8 @@ _,,)\.~,,._
                | | | |             || |  '</pre
     >
     <script>
-      const legs = "\n               | | | |             || |".repeat(10);
+      const legs = document.createElement("div");
+      legs.textContent = "               | | | |             || |\n".repeat(10);
 
       const scrollPercent = (elm, p) =>
         ((elm.scrollTop || p.scrollTop) / (p.scrollHeight - p.clientHeight)) *
@@ -34,22 +41,21 @@ _,,)\.~,,._
 
       let legCount = 0;
 
-      while (-100 <= window.innerHeight - document.body.scrollHeight) {
-        legCount += 1;
-        horse.insertAdjacentHTML("beforeend", legs);
+      while (-100 <= window.innerHeight - document.body.scrollHeight && legCount++ < 100) {
+        horse.append(legs.cloneNode(true));
       }
 
       const addLegs = () => {
+        legCount = 0
         // warning: as more legs are added, this will add more legs, set to a fixed rate in the future?
         // maybe margins could be used to make it look more filled than it actually is, then only add what's needed
-        while (scrollPercent(document.body, document.documentElement) > 90) {
-          legCount += 1;
-          horse.insertAdjacentHTML("beforeend", legs);
+        while (scrollPercent(document.body, document.documentElement) > 90 && legCount++ < 100) {
+          horse.append(legs.cloneNode(true));
         }
       };
 
-      addLegs()
-      window.onscroll = addLegs;
+      addLegs();
+      window.addEventListener('scroll', addLegs, { passive: true })
     </script>
   </body>
 </html>
